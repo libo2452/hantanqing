@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>HTML5 Demo</title>
+<style>
+	h1{margin-left:40px;}
+	h1 sub{font-size:16px; font-weight:normal; margin-left:10px;}
+ol li{margin-bottom: 0px; border: 4px dotted #999; border-bottom:none; padding:20px;}
+ol li:last-child{border-bottom:4px dotted #999;}
+	canvas{border:1px solid #888;}
+#status {
+  padding: 5px;
+  color: #fff;
+  background: #ccc;
+}
+
+#status.fail {
+  background: #c00;
+}
+
+#status.success {
+  background: #0c0;
+}
+#drag{
+	width:600px;margin-bottom:10px;
+	padding:10px; border:1px solid #ccc;
+}
+/* for safari */
+*[draggable=true] {
+  -khtml-user-drag: element;
+  cursor: move;
+}
+
+#drop {
+  border: 3px dashed #ccc;
+  padding: 10px;
+  background: #fff;
+  min-height: 200px;
+  width: 600px;
+/*  overflow-y: auto;*/
+}
+
+#drop .info {
+  color: #999;
+  text-align: center;
+}
+
+#drop ul {
+  margin: 0;
+  padding: 0;
+}
+
+#drop li {
+  border-top: 2px solid #ccc;
+  list-style: none;
+  padding: 5px;
+  font-size: 90%;
+}
+
+#drop li:first-child {
+  border-top: 0;
+}
+#result{color:#EA3B3B; font-size:20px; font-weight:700;}	
+</style>
+<script src="html5_files/commonutil.js" charset="UTF-8" type="text/javascript"></script></head>
+<body>
+	<h1>HTML5 DEMO<sub>By Adam(<a href="http://adamlu.com/">http://adamlu.com/</a>)</sub></h1>
+	<ol>
+	<li>
+	<h2>New Elements</h2>
+	<h3>Dialog</h3>
+	<section>
+	<dialog>
+ <dt> Costello
+ </dt><dd> Look, you gotta first baseman?
+ </dd><dt> Abbott
+ </dt><dd> Certainly.
+ </dd><dt> Costello
+ </dt><dd> Who's playing first?
+ </dd><dt> Abbott
+ </dt><dd> That's right.
+ </dd><dt> Costello
+ </dt><dd> When you pay off the first baseman every month, who gets the money?
+ </dd><dt> Abbott
+ </dt><dd> Every dollar of it. 
+ 
+</dd></dialog></section>
+<h3>Figure</h3>
+<section>
+<figure>
+ <img src="html5_files/banner.jpg">
+ <legend>Example</legend>
+</figure>
+</section>
+<h3>Datalist</h3>
+<section>
+<input list="browsers">
+<datalist id="browsers">
+ <option value="Safari">
+ </option><option value="Internet Explorer">
+ </option><option value="Opera">
+ </option><option value="Firefox">
+</option></datalist>
+</section>
+<h3>Placeholder</h3>
+<section>
+<input placeholder="请输入您要搜索的内容" type="text"><input value="搜索" type="submit">
+	</section></li>
+	<li>
+	<h2>Video</h2>
+	<video tabindex="0" poster="border.png" id="video" height="280" width="498">
+	<source src="html5_files/coldplay.mp4">
+	</video>
+<script>
+  var video = document.getElementById("video");
+</script>
+<p><button type="button" onclick="video.play();">Play</button><button type="button" onclick="video.pause();">Pause</button></p>
+	</li>
+	<li>
+	<h2>Canvas</h2>
+	<canvas width="300" height="200"></canvas>
+	<p><button id="drawRect">画矩形</button> <button id="drawTriangle">画三角形</button></p>
+	<script>
+	(function(){
+		var canvas = document.querySelector('canvas');
+		if(!canvas || !canvas.getContext){
+			return;
+		}
+		var context = canvas.getContext('2d');
+		document.getElementById('drawRect').onclick = function(){
+			context.clearRect(0, 0, 300, 200);
+			context.fillStyle = '#00f';
+			context.fillRect(50, 20, 100, 80);
+		}
+		document.getElementById('drawTriangle').onclick = function(){
+			context.clearRect(0, 0, 300, 200);
+			context.strokeStyle = '#f00';
+			context.lineWidth = 2;
+			context.moveTo(10, 10);
+			context.lineTo(100, 10);
+			context.lineTo(100, 100);
+			context.lineTo(10, 10);
+			context.fill();
+			context.stroke();
+			context.closePath();
+		}
+	})();
+	</script>
+	</li>
+	<li>
+	<h2>ContentEditable&amp;LocalStorage</h2>
+      <section id="editable" contenteditable="true">
+      <p>Hi, I'm Adam Lu. <a href="http://adamlu.com/">http://adamlu.com/</a></p>
+      </section>
+      <button id="clear">Clear</button>
+      <script>
+	      var editEl = document.getElementById("editable"), clearBtn = document.getElementById("clear");
+	      editEl.onfocus = function(){
+	      	document.designMode = 'on';
+	}
+	editEl.onblur = function(){
+		localStorage.setItem('editablecont', this.innerHTML);
+		document.designMode = 'off';
+	}
+	clearBtn.onclick = function(){
+		localStorage.clear();
+		window.location = window.location;
+	}
+	if(localStorage.getItem('editablecont')){
+		editEl.innerHTML = localStorage.getItem('editablecont');
+	}
+      </script>	
+      </li>
+      <li>
+      <h2>Drag&amp;Drop</h2>
+      <section>
+      <div id="drag">
+	      <p>Hi, I'm Adam Lu. <a href="http://adamlu.com/">http://adamlu.com/</a></p>
+	      <p>Hi, I'm Adam Lu. <img src="html5_files/adam_avatar.jpg"> <a href="http://adamlu.com/">http://adamlu.com/</a></p>
+	      <p>Hi, I'm Adam Lu. <a href="http://adamlu.com/">http://adamlu.com/</a></p>
+      </div>
+      <div id="drop"><ul><li>http://revieweb20.com/Speech/Demo/adam_avatar.jpg
+http://revieweb20.com/Speech/Demo/adam_avatar.jpg</li><li>http://revieweb20.com/Speech/Demo/adam_avatar.jpg
+http://revieweb20.com/Speech/Demo/adam_avatar.jpg</li><li>http://revieweb20.com/Speech/Demo/adam_avatar.jpg
+http://revieweb20.com/Speech/Demo/adam_avatar.jpg</li></ul></div>
+      </section>
+      <script>
+function cancel(e) {
+  if (e.preventDefault) e.preventDefault();
+}
+function entities(s) {
+  var e = {
+    '"' : '&quot;',
+    '&' : '&amp;',
+    '<' : '&lt;',
+    '>' : '&gt;'
+  };
+  return s.replace(/["&<>]/g, function (m) {
+    return e[m];
+  });
+}
+
+var drop = document.querySelector('#drop');
+drop.ondragover = cancel;
+drop.ondragenter = cancel;
+
+drop.ondrop = function (e) {
+  if (e.preventDefault) e.preventDefault(); // stops the browser from redirecting off to the text.
+
+  // just rendering the text in to the list
+
+  // clear out the original text
+  if (drop.innerHTML.match(/Drop here/i)) {
+    drop.innerHTML = '<ul></ul>';
+  }
+  
+  var li = document.createElement('li');
+  /** THIS IS THE MAGIC: we read from getData based on the content type - so it grabs the item matching that format **/
+  if(e.dataTransfer.types){
+	li.innerHTML = entities(e.dataTransfer.getData(e.dataTransfer.types[0]));
+}else{
+	li.innerHTML = e.dataTransfer.getData('Text');
+}
+  
+  var ul = drop.querySelector('ul');
+
+  if (ul.firstChild) {
+    ul.insertBefore(li, ul.firstChild);
+  } else {
+    ul.appendChild(li);
+  }
+  
+  return false;
+}
+      </script>
+      </li>
+      <li>
+      <h2>Geolocation</h2>
+<script type="text/javascript" src="html5_files/js"></script><script src="html5_files/main.js" type="text/javascript"></script>
+<section id="geolocation">
+<p>Finding your location: <span class="fail" id="status">failed</span></p>
+<button id="findme">Find Me</button>
+</section>
+<script>
+function success(position) {
+  var s = document.querySelector('#status');
+  if (s.className == 'success') {
+    // not sure why we're hitting this twice in FF, I think it's to do with a cached result coming back    
+    return;
+  }
+  
+  s.innerHTML = "found you!";
+  s.className = 'success';
+  
+  var mapcanvas = document.createElement('div');
+  mapcanvas.id = 'mapcanvas';
+  mapcanvas.style.height = '400px';
+  mapcanvas.style.width = '500px';
+  
+  document.getElementById('geolocation').appendChild(mapcanvas);
+  var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+  var myOptions = {
+    zoom: 15,
+    center: latlng,
+    mapTypeControl: false,
+    navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL},
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+  var map = new google.maps.Map(document.getElementById("mapcanvas"), myOptions);
+  var marker = new google.maps.Marker({
+      position: latlng, 
+      map: map, 
+      title:"You are here!"
+  });
+}
+function error(msg) {
+  var s = document.querySelector('#status');
+  s.innerHTML = typeof msg == 'string' ? msg : "failed";
+  s.className = 'fail';
+}
+document.getElementById('findme').onclick = function(){
+if(navigator.geolocation){
+  navigator.geolocation.getCurrentPosition(success, error);
+}
+}
+</script>
+</li>
+<li>
+<h2>Web Workers</h2>
+<p>The even number under 10000 discovered so far is: <output id="result">10000</output></p>
+<button id="run">Run Web Workers</button>
+<script>
+	var w = new Worker('worker.js');
+	w.onmessage = function(event){
+		document.getElementById('result').textContent = event.data;
+	}
+	document.getElementById('run').onclick = function(){
+		w.postMessage('run');
+	}
+</script>
+</li>
+<li>
+<h2>Cross-Document Messaging</h2>
+<section>
+    <header>
+      <h3>Same Domain postMessage</h3>
+    </header>
+    <article>
+      <form id="x-form">
+      <p><label for="message">Message</label> <input name="message" value="my message" id="message" type="text"> <input type="submit">
+      </p>
+      <h2>Target iframe:</h2>
+      <iframe id="iframe" src="html5_files/postmessage-target.htm"></iframe>
+      </form>
+    </article>
+</section>
+<script>
+var win = document.getElementById("iframe").contentWindow;
+document.getElementById('x-form').onsubmit = function (e) {
+	if (e.preventDefault)
+		e.preventDefault();
+	win.postMessage(
+		document.getElementById("message").value,//message
+		"http://revieweb20.com"//targetOrigin
+	);
+	e.returnValue = false;
+	return false;
+}
+</script>
+</li>
+</ol>
+
+
+</body></html>

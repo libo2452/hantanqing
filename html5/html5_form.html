@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>HTML5 Demo - html5 form</title>
+</head>
+<body>
+<form action="/register" enctype="application/x-www-form+xml" method="post">
+  <p>
+    <label for="name">ID(请使用Email注册)</label>
+    <input value="42342342" name="name" required="" type="email">
+  </p><p>
+    <label for="password">密码</label>
+    <input name="password" required="" type="password">
+  </p><p>
+    <label for="birthday">出生日期</label>
+    <input value="4234" name="birthday" type="date">
+  </p><p>
+    <label for="gender">国籍</label>
+    <select name="country" data="countries.xml">
+    </select>
+  </p><p>
+    <label for="photo">个性头像</label>
+    <input name="photo" accept="image/*" type="file">
+  </p><table>
+    <thead>
+    <tr><td><button type="add" template="questionId">+</button>
+        保密问题</td>
+      <td>答案</td>
+      <td></td>
+      </tr></thead>
+    <tbody><tr id="questionId" repeat="template" repeat-start="1" repeat-min="1" repeat-max="3">
+      <td><input name="questions[questionId].q" type="text"></td>
+      <td><input name="questions[questionId].a" type="text"></td>
+      <td><button type="remove">删除</button></td>
+    </tr>
+  </tbody></table>
+  <p>
+    <input value="send" class="submit" type="submit">
+  </p>
+</form>
+
+
+</body></html>

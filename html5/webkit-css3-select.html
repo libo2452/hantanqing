@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <title>HTML5 Demo</title>
+  <style>
+html{color:#000;background:#F0F0F0;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,hr,button,article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}audio,canvas,video{display:inline-block;*display:inline;*zoom:1}body,button,input,select,textarea{font:12px/1.5 tahoma,arial,\5b8b\4f53}input,select,textarea{font-size:100%}table{border-collapse:collapse;border-spacing:0}th{text-align:inherit}fieldset,img{border:0}iframe{display:block}abbr,acronym{border:0;font-variant:normal}del{text-decoration:line-through}address,caption,cite,code,dfn,em,th,var{font-style:normal;font-weight:500}ol,ul{list-style:none}caption,th{text-align:left}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:500}q:before,q:after{content:''}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sup{top:-0.5em}sub{bottom:-0.25em}a:hover{text-decoration:underline}ins,a{text-decoration:none}.fn-clear:after{visibility:hidden;display:block;font-size:0;content:" ";clear:both;height:0}.fn-clear{zoom:1}body .fn-hide{display:none}.fn-left,.fn-right{display:inline}.fn-left{float:left}.fn-right{float:right}
+body{font: 14px/1.5  微软雅黑,arial,宋体;background-color:#F0F0F0;}
+/*input,select,textarea{-webkit-user-select:auto;-webkit-appearance:none;}*/
+.ui-block{
+    margin: 10px auto;
+    padding: 18px 6% 60px;    
+    width: 80%;
+    background: none repeat scroll 0 0 #F7F7F7;
+    border: 1px solid rgba(147, 184, 189, 0.8);
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 0 2px 5px rgba(105, 108, 109, 0.7), 0 0 8px 5px rgba(208, 223, 226, 0.4) inset;
+}
+.ui-block ul li{margin-top:8px;}
+.ui-block h3{
+    color: #066A75;
+    font-family: Arial,sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 2px 0 30px;
+    text-align: left;
+}
+.ui-block h3:after{
+    content: " ";
+    display: block;
+    height: 2px;
+    margin-top: 10px;
+    width: 100%;
+    background: -moz-linear-gradient(left, rgba(147,184,189,0) 0%, rgba(147,184,189,0.8) 20%, rgba(147,184,189,1) 53%, rgba(147,184,189,0.8) 79%, rgba(147,184,189,0) 100%); 
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(147,184,189,0)), color-stop(20%,rgba(147,184,189,0.8)), color-stop(53%,rgba(147,184,189,1)), color-stop(79%,rgba(147,184,189,0.8)), color-stop(100%,rgba(147,184,189,0))); 
+  background: -webkit-linear-gradient(left, rgba(147,184,189,0) 0%,rgba(147,184,189,0.8) 20%,rgba(147,184,189,1) 53%,rgba(147,184,189,0.8) 79%,rgba(147,184,189,0) 100%); 
+  background: -o-linear-gradient(left, rgba(147,184,189,0) 0%,rgba(147,184,189,0.8) 20%,rgba(147,184,189,1) 53%,rgba(147,184,189,0.8) 79%,rgba(147,184,189,0) 100%); 
+  background: -ms-linear-gradient(left, rgba(147,184,189,0) 0%,rgba(147,184,189,0.8) 20%,rgba(147,184,189,1) 53%,rgba(147,184,189,0.8) 79%,rgba(147,184,189,0) 100%); 
+  background: linear-gradient(left, rgba(147,184,189,0) 0%,rgba(147,184,189,0.8) 20%,rgba(147,184,189,1) 53%,rgba(147,184,189,0.8) 79%,rgba(147,184,189,0) 100%);    
+}
+.ui-select-cnt{display:inline-block;width:180px;-webkit-border-radius:3px;border:1px solid #E8CFA2;
+background:-webkit-gradient(
+linear,
+left top,
+left bottom,
+color-stop(0%,#FFF7E9),
+color-stop(100%,#F4DEB7)
+);
+-webkit-box-shadow:0 1px 1px rgba(255,255,255,1);
+}
+.ui-select-cnt select{-webkit-appearance:none;overflow:hidden;display:block;width:100%;height:28px;border:0 none;
+background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAFCAYAAAB4ka1VAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAADdJREFUeNpi3L8w6z8DEDjETWVkQAIHFmWDxZnQBdDZjP///0cRQAYgU5mwGY8sxoQugM4GCDAAofsYN7jo7lkAAAAASUVORK5CYII=") no-repeat 90% 50%;
+line-height:28px;text-indent:10px;color:#784D00;white-space:nowrap;text-overflow:ellipsis;padding-right:19px;}
+.ui-select-cnt:hover{border-color:#E5B650;
+background:-webkit-gradient(
+linear,
+left top,
+left bottom,
+color-stop(0%,#F2BF53),
+color-stop(100%,#E18F0F)
+);
+}
+.ui-select-cnt:hover select{
+background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAFCAYAAAB4ka1VAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACxJREFUeNpi/A8EDBDAyIAKwOJM6ALobCY0nf/RFDIy4TAeLsaELoDOBggwAJo6CQjtO61mAAAAAElFTkSuQmCC");
+color:#FFFFFF!important;
+}
+
+.ui-select-containter{display:inline-block;width:180px;-webkit-border-radius:3px;border:1px solid #E8CFA2;
+background:-webkit-gradient(
+linear,
+left top,
+left bottom,
+color-stop(0%,#FFF7E9),
+color-stop(100%,#F4DEB7)
+);
+-webkit-box-shadow:0 1px 1px rgba(255,255,255,1);
+overflow: hidden;position:relative;
+}
+.ui-select-containter .ui-select-arrow{
+  height:20px;width:20px;position: absolute;top:4px;right:15px;
+background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAFCAYAAAB4ka1VAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAADdJREFUeNpi3L8w6z8DEDjETWVkQAIHFmWDxZnQBdDZjP///0cRQAYgU5mwGY8sxoQugM4GCDAAofsYN7jo7lkAAAAASUVORK5CYII=") no-repeat 90% 50%;
+
+}
+.ui-select-containter select{width:200px;height:28px;border:0 none;
+background:none;border:none;
+line-height:28px;text-indent:10px;color:#784D00;white-space:nowrap;text-overflow:ellipsis;}
+.ui-select-containter:hover{border-color:#E5B650;
+background:-webkit-gradient(
+linear,
+left top,
+left bottom,
+color-stop(0%,#F2BF53),
+color-stop(100%,#E18F0F)
+);
+color:#fff;
+}
+
+</style>
+<body>
+<div class="ui-mobile">
+  <div class='ui-block'>
+    <ul>
+      <li>
+        <h3>webkit+css3的select(关键点:-webkit-appearance:none;)</h3>
+      </li>
+      <li>
+        <span class="ui-select-cnt">
+          <select name="" id="">
+            <option value="">小李飞刀</option>
+            <option value="">独孤求败</option>
+            <option value="">西门吹雪</option>
+          </select>
+        </span>
+      </li>
+      <li>
+        <h3>兼容firefox的select</h3>
+      </li>
+      <li>
+        <span class="ui-select-containter">
+          <select>
+            <option value="">小李飞刀</option>
+            <option value="">独孤求败</option>
+            <option value="">西门吹雪</option>
+          </select>
+          <span class='ui-select-arrow'></span>
+        </span>
+      </li>
+      <li>
+        <h3>普通select</h3>
+      </li>
+      <li>
+        <span class="ui-select-normal">
+          <select>
+            <option value="">小李飞刀</option>
+            <option value="">独孤求败</option>
+            <option value="">西门吹雪</option>
+          </select>         
+        </span>
+      </li>
+    </ul>
+
+  </div>
+</div>
+</body>
+</html>
