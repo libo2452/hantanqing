@@ -1,0 +1,184 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<meta name="keywords" content="JS代码,其他代码,JS广告代码,JS特效代码" />
+<meta name="description" content="此代码内容为手机移动端评分和分享弹出框，属于站长常用代码，更多其他代码代码请访问中国学网图库JS代码频道。" />
+<title>手机移动端评分和分享弹出框_中国学网图库</title>
+
+    <!--demo展示所用css，不用关心 begin-->
+    <link rel="stylesheet" type="text/css" href="css/reset.css" />
+    <!--demo展示所用css end-->
+
+    <!--组件依赖css begin-->
+    <link rel="stylesheet" type="text/css" href="css/widget/dialog/dialog.css" />
+    <link rel="stylesheet" type="text/css" href="css/widget/dialog/dialog.default.css" /> <!--皮肤文件，若不使用该皮肤，可以不加载-->
+    <!--组件依赖css end-->
+
+    <!--demo展示所用css，不用关心 begin-->
+    <link rel="stylesheet" type="text/css" href="css/widget/button/button.css" />
+    <link rel="stylesheet" type="text/css" href="css/widget/button/button.default.css" />
+    <link rel="stylesheet" type="text/css" href="css/widget/dialog/dialog_demo.css"/>
+    <!--demo展示所用css end-->
+
+    <!--组件依赖js begin-->
+    <script type="text/javascript" src="js/zepto.js"></script>
+    <script type="text/javascript" src="js/zepto.extend.js"></script>
+    <script type="text/javascript" src="js/zepto.ui.js"></script>
+    <script type="text/javascript" src="js/zepto.highlight.js"></script>
+    <script type="text/javascript" src="js/widget/dialog.js"></script>
+    <!--组件依赖js end-->
+
+    <!--demo展示所用js begin-->
+    <script type="text/javascript" src="js/widget/button.js"></script>
+    <!--demo展示所用js end-->
+</head>
+<body>
+<!-- 代码 开始 -->
+
+<div id="top"></div>
+<div class="article">
+
+    <div class="info">
+        <h1>中国学网图库</h1>
+    </div>
+    <div class="text">
+		<p>中国学网图库 www.xue163.com 创建于2006年3月，目前是国内最大的设计师素材平台。</p>
+		<p>中国学网图库一直专注于提供网页素材下载，其内容涵盖网页素材，矢量素材，JS广告代码，小图片，网页背景，导航菜单，PNG图标等，让任何一个网页设计师都能轻松找到自己想要的素材！</p>
+		<p>自建站以来，中国学网图库受到了设计师和站长的广泛喜爱，每天来本站找素材已经成为很多设计师的习惯，在不断的成长过程中，也得到各大知名网站的收录，包括Google，百度，hao123，2345等。</p>
+		<p>中国学网图库PR7，Alexa世界排名为5332，中国网站排名638名左右，平均日访问量10万IP/100万PV左右。这些数据还在快步增长中，相信在不久的将来我们会有更大的成绩展现给大家！</p>
+		<p>懒得爬楼，于是人们发明了电梯；懒得去调电视机，于是有了遥控器；懒得去听音乐会，于是有了唱片，磁带和CD……历史证明，中国学网总喜欢化繁为简，是中国学网推动了人类的进步！</p>
+		<p>我们的使命：为设计师提供动力!</p>
+    </div>
+
+    <div class="btns">
+        <a>登录</a>
+        <a>评分</a>
+        <a>分享</a>
+        <a>夜间</a>
+    </div>
+
+    <div id="dialog1" title="登陆提示">
+        <p>登陆提示</p>
+    </div>
+    <div id="dialog2" title="登录">
+        <p>账号：<input type="text"></p><p>密码：<input type="text"></p>
+    </div>
+    <div id="dialog3" title="文档评分" class="vote-dialog">
+        <p>星级从1到5，获得越多星星，表示等级越高</p>
+    </div>
+</div>
+
+<script>
+    //setup模式
+    $('#dialog1').dialog({
+        autoOpen: false,
+        closeBtn: false,
+        buttons: {
+            '取消': function(){
+                this.close();
+            },
+            '确定': function(){
+                this.close();
+                $('#dialog2').dialog('open');
+            }
+        }
+    }).dialog('data', '_wrap').addClass('login-dialog');
+
+    $('#dialog2').dialog({
+        autoOpen: false,
+        closeBtn: false,
+        buttons: {
+            '取消': function(){
+                this.close();
+            }
+        }
+    }).dialog('data', '_wrap').addClass('login-dialog');
+
+    $('#dialog3').dialog({
+        autoOpen: false,
+        closeBtn: true,
+        scrollMove: false,
+        buttons: {
+            '取消': function(){
+                this.close();
+            },
+            '确定': function(){
+                this.close();
+            }
+        }
+    });
+
+    //render模式
+    var dialog4 = $.ui.dialog({
+        width: 288,
+        autoOpen: false,
+        closeBtn: false,
+        buttons: {
+            '取消': function(){
+                this.close();
+            }
+        },
+        content: '<ul class="share-list"><li class="renren">人人网</li><li class="sina">新浪微博</li><li class="sms">短信息</li><li class="email">用电子邮件发送信息</li></ul>'
+    });
+    dialog4.data('_wrap').addClass('share-dialog');
+
+    var dialog5 = $.ui.dialog({
+        autoOpen: false,
+        closeBtn: false,
+        buttons: {
+            '取消': function(){
+                this.close();
+            },
+            '确定': function(){
+                this.close();
+            }
+        },
+        title: '夜间模式',
+        content: '<p>打开夜间模式</p>'
+    });
+    dialog5.data('_wrap').addClass('login-dialog login-dialog-dark');
+
+
+    $('.btns a').button({click: function(){
+        var el = this.root();
+        switch(el.index()){
+            case 0:
+                $('#dialog1').dialog('open');
+                break;
+            case 1:
+                $('#dialog3').dialog('open', 20, 20);
+                break;
+            case 2:
+                dialog4.open();
+                break;
+            case 3:
+                dialog5.open();
+                break;
+        }
+    }});
+
+    // 由于某些机型，postion:fixed的元素 zindex最高，所以这里做了处理
+    $(document).on('open', function( e ){
+        $('.ui-toolbar').css('visibility', 'hidden');
+    }).on('close', function(e){
+        $('.ui-toolbar').css('visibility', 'visible');
+    });
+</script>
+
+<!-- 代码 结束 -->
+
+<style type="text/css">
+.my_info{ border-top:2px solid #eee; padding:10px 0; margin-top:30px;}
+.my_info p{ text-align:center; font:normal 12px/30px 'MicroSoft YaHei';}
+</style>
+<div class="my_info">
+	<p>来源：<a href="http://gmu.baidu.com/" target="_blank" style="color:#0099FF">GMU</a>　代码整理：<a href="http://www.xue163.com/" target="_blank" style="color:#0099FF">中国学网图库</a>　感谢：<a href="http://zheye.cc/" target="_blank" style="color:#0099FF">折页网</a></p>
+    <p>＊尊重他人劳动成果，转载请自觉注明出处！注：此代码仅供学习交流，请勿用于商业用途。</p>
+    <p></p>
+    <p><p>手机移动端登录，评分，分享，页面模式弹出框代码，支持iOS，Android（暂不支持WP）等系统以webkit为内核的浏览器，建议在PC端使用以webkit为内核的浏览器（如：Google Chrome）中缩小浏览器窗口宽度查看效果，PC端查看效果需要用鼠标按住导航拖动以模拟手机上手指拖动的效果。</p><p><br /></p><p>使用方法：</p><p>1.head区域引用样式文件reset.css ，dialog.css，dialog.default.css，dialog_demo.css，button.css，button.default.css</p><p>2.head区域引用JS文件zepto.js，zepto.extend.js，zepto.ui.js，zepto.highlight.js，dialog.js，button.js</p><p>3.在你的文件中加入&lt;!-- 代码 开始 --&gt;&lt;!-- 代码 结束 --&gt;区域代码</p><p>4.本代码中两种导航效果均需引用所有CSS,JS文件，如需修改样式，可去掉default相关样式文件</p></p>
+    <p style="margin:20px 0"></p>
+</div>
+
+</body>
+</html>
