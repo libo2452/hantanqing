@@ -9,6 +9,9 @@
     $(document).bind("mobileinit", function(){
         $.mobile.autoInitialize=false; //删除这行配置参数就会出现渲染错误
     });
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+	WeixinJSBridge.call('hideOptionMenu');
+    });
     $(function(){
           $("#go").on('click',function(){
               var imeiNum = $("input[name=imei]").val();
@@ -55,3 +58,9 @@
         </div>
 </body>
 </html>
+<?php
+$logs = array($_SERVER,$_GET,$_COOKIE);
+$file = fopen(dirname(__FILE__)."/log","a+");
+fwrite($file,var_export($logs,true));
+fclose($file);
+
